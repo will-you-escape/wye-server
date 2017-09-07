@@ -1,3 +1,11 @@
 language: node_js
 node_js:
 - '8'
+deploy:
+  provider: heroku
+  api_key:
+    secure: YeG0ChGLd7fJzNilNIzjy0+c/7nxGuoszBu47PFIaKbWnFbae+AcYWEIOODcc/adfgf1GKAEWQ0ydhg1KUTFHpN+n7ferGie0y/wPuf+BeIfS6PJTfp05+/j+8JLHvRhZU78wwm3/prqxydee6BD9b3IGgCTkEFq/vivMTdla4cy6okYkliO0Ftd2XHG45GN9dXMf/rtTXDY+hSqdrU/nBUG9sMmzX430yZwBRkt5eOQcy6UAmhWToEKOaUY4yJG+/xl1xPTkBTIT+j8zvs8a6h/w+NoFgfx1c9/csWssBta2dxhGAUn+fBkSoiW8cisSol+ctx8M+s3crE6X3yA3Eu4JQ+3vyGVxrHz0alOzT8qdnzx8r1WSDjn/cwyuaZpvgrB0FYWsqLqkgouWbihql/3BH7TqRayljHwWcte+rDNHxcAo3SYwaQJMcxx4JEzh0P3KY8Ef/Fb66bJTMPLdSDFqFbhHF7t4KLD45Yy/hS06/aVIviW5zOWsXYUTg5fTfaQT9YYVbVdS6TJvJWLDmCdC4hi/L4W3PSIsfHwCPuDHpH77Amd+7G1logZDChgiJpnsLQAqYOeIA13oFlIpDMQCEH+cnnGgCebdYV7/W1jYylmn0ZwM29dhiQkcTZiWanA+bDiWImbjytrIBiOOyltBg29VCfVZQ3Qc1Lpocs=
+  app: wye-server-int
+  on:
+    repo: will-you-escape/wye-server
+    branch: develop
