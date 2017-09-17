@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
-
+var flash = require('connect-flash');
 var passport = require('passport');
 
 var app = express();
@@ -20,7 +20,6 @@ https://github.com/jaredhanson/passport/issues/51
 */
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -60,7 +59,7 @@ app.use(function(err, req, res, next) {
 
 
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-
+app.use(flash());
 
 var db = require('./db');
 
@@ -73,7 +72,8 @@ var db = require('./db');
 var Strategy = require('passport-local').Strategy;
 
 passport.use(new Strategy({
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback : true
   },
   function(username, password, cb) {
     db.users.findByUsername(username, function(err, user) {
