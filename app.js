@@ -5,8 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
 var db = require('./db');
 
 var index = require('./routes/index');
@@ -49,6 +47,10 @@ app.use(function(err, req, res, next) {
 
 
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
+var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -58,7 +60,9 @@ app.use(passport.session());
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
-passport.use(new Strategy(
+passport.use(new Strategy({
+    usernameField: 'email'
+  },
   function(username, password, cb) {
     db.users.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
