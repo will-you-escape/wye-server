@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    title Login page
+
+body
+  h1 Login form
+  p Please login
+
+  form(action="/login", method="post")
+    label(for='email') Email
+      input(type='text' id='username' placeholder='email' name='username')
+    label(for='password') Password
+      input(type='password' id='password' placeholder='password' name='password')
+    input(type='submit', name='submit')
