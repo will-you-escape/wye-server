@@ -5,12 +5,25 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
-var db = require('./db');
+
+var passport = require('passport');
+
+var app = express();
+
+/* Passport initialization should happen before the routing declaration
+app.router is included at the end of the middleware stack at the time that
+you declare routes.
+If you then use() more middleware after that, that middleware comes
+after app.router. The upshot is that passport.initialize() needs to come before app.router,
+so its recommended to configure your app before declaring routes.
+https://github.com/jaredhanson/passport/issues/51
+*/
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,11 +61,8 @@ app.use(function(err, req, res, next) {
 
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
 
-app.use(passport.initialize());
-app.use(passport.session());
+var db = require('./db');
 
 // Configure the local strategy for use by Passport.
 //
@@ -60,6 +70,8 @@ app.use(passport.session());
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
+var Strategy = require('passport-local').Strategy;
+
 passport.use(new Strategy({
     usernameField: 'email'
   },
