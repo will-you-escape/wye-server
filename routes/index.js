@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
+var passport = require('passport'); 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Will you escape' });
+  res.render('index', { title: 'Will you escape', req: req });
 });
 
 
@@ -16,7 +16,11 @@ router.get('/login/',
 );
 
 router.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', {
+    failureRedirect: '/login',
+    failureFlash: 'Invalid username or password.',
+    successFlash: 'Welcome!'}
+  ),
   function(req, res) {
     res.redirect('/');
   }
