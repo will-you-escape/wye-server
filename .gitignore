@@ -1,5 +1,5 @@
 node_modules/*
 bin/*
-/semantic/
 .env
 .DS_Store
+/semantic/
