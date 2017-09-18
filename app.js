@@ -10,6 +10,9 @@ var passport = require('passport');
 
 var app = express();
 
+app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+//app.use(flash());
+
 /* Passport initialization should happen before the routing declaration
 app.router is included at the end of the middleware stack at the time that
 you declare routes.
@@ -57,9 +60,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-app.use(flash());
-
 var db = require('./db');
 
 // Configure the local strategy for use by Passport.
@@ -71,8 +71,7 @@ var db = require('./db');
 var Strategy = require('passport-local').Strategy;
 
 passport.use(new Strategy({
-    usernameField: 'email',
-    passReqToCallback : true
+    usernameField: 'email'
   },
   function(username, password, cb) {
     db.users.findByUsername(username, function(err, user) {
