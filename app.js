@@ -5,13 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressSession = require('express-session');
-var flash = require('connect-flash');
 var passport = require('passport');
 
 var app = express();
 
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-//app.use(flash());
 
 /* Passport initialization should happen before the routing declaration
 app.router is included at the end of the middleware stack at the time that
