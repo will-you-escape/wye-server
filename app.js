@@ -4,11 +4,26 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressSession = require('express-session');
+var passport = require('passport');
+
+var app = express();
+
+app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
+/* Passport initialization should happen before the routing declaration
+app.router is included at the end of the middleware stack at the time that
+you declare routes.
+If you then use() more middleware after that, that middleware comes
+after app.router. The upshot is that passport.initialize() needs to come before app.router,
+so its recommended to configure your app before declaring routes.
+https://github.com/jaredhanson/passport/issues/51
+*/
+app.use(passport.initialize());
+app.use(passport.session());
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,12 +58,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// set the port of our application
-// process.env.PORT lets the port be set by Heroku
-var port = process.env.PORT || 8080;
-
-app.listen(port, function() {
-  console.log('Our app is running on http://localhost:' + port);
-});
+require('./core/auth.js')(passport);
 
 module.exports = app;
