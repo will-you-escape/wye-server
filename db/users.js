@@ -1,6 +1,6 @@
 var records = [
-    { id: 1, username: 'jack', password: 'secret', displayName: 'Jack', emails: [ { value: 'jack@example.com' } ] }
-  , { id: 2, username: 'jill', password: 'birthday', displayName: 'Jill', emails: [ { value: 'jill@example.com' } ] }
+    { id: 1, email: 'jack@wye.com', username: 'Jack', password: 'secret', displayName: 'Jack'}
+  , { id: 2, email: 'jill@wye.com', username: 'Jill', displayName: 'Jill'}
 ];
 
 exports.findById = function(id, cb) {
@@ -14,11 +14,11 @@ exports.findById = function(id, cb) {
   });
 }
 
-exports.findByUsername = function(username, cb) {
+exports.findByEmail = function(email, cb) {
   process.nextTick(function() {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
-      if (record.username === username) {
+      if (record.email === email) {
         return cb(null, record);
       }
     }

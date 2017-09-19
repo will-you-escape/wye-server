@@ -71,8 +71,8 @@ var Strategy = require('passport-local').Strategy;
 passport.use(new Strategy({
     usernameField: 'email'
   },
-  function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
+  function(email, password, cb) {
+    db.users.findByEmail(email, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
