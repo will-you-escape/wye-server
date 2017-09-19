@@ -60,13 +60,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-<<<<<<< HEAD
-
-app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-app.use(flash());
-
-=======
->>>>>>> Finish first loop of authentication
 var db = require('./db');
 
 // Configure the local strategy for use by Passport.
