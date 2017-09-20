@@ -17,7 +17,8 @@ router.get('/', function(req, res, next) {
       db.close();
       res.render('rooms', { 
         title: 'Will You Escape - Rooms',
-        rooms: rooms
+        rooms: rooms,
+        activeMenu: 'rooms'
       });
     });
     
