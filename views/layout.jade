@@ -6,8 +6,8 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div.ui.inverted.menu
-      div.header.item Will You Escape
-      a.item Rooms
+      a.header.item(href="/", class="#{ activeMenu === 'index' ? 'active' : '' }") Will You Escape
+      a.item(href="/rooms", class="#{ activeMenu === 'rooms' ? 'active' : '' }") Rooms
     block content
     script(src="https://code.jquery.com/jquery-3.2.1.min.js")
     script(src="/semantic/semantic.min.js")
