@@ -42,7 +42,7 @@ router.get('/create-account/',
 
 router.post('/create-account/',
   function(req, res) {
-    db.users.saveUser(req.query['email'], req.query['password'], function(user) {
+    db.users.saveUser(req.body['email'], req.body['password'], function(user) {
       debug('user created');
       res.redirect('/');
     });
