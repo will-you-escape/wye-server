@@ -61,10 +61,12 @@ exports.checkLoginAndPassword = function(email, password, cb) {
   });
 }
 
+mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
 
 exports.findByMongoId = function(id, cb) {
   process.nextTick(function() {
-    User.findOne({ 'id': id}, 'id username email', function (err, user) {
+    User.findOne({ '_id': ObjectId(id)}, 'id username email', function (err, user) {
       debug('checkLoginAndPassword.findByMongoId');
       debugger;
       if (err) return handleError(err);
