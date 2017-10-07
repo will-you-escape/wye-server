@@ -15,14 +15,12 @@ module.exports = function(passport) {
             usernameField: 'email'
         },
         function (email, password, cb) {
-            db.users.findByEmail(email, function (err, user) {
+            db.users.checkLoginAndPassword(email, password, function (err, user) {
+                debugger;
                 if (err) {
                     return cb(err);
                 }
                 if (!user) {
-                    return cb(null, false);
-                }
-                if (user.password != password) {
                     return cb(null, false);
                 }
                 return cb(null, user);
@@ -42,7 +40,7 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function (id, cb) {
-        db.users.findById(id, function (err, user) {
+        db.users.findByMongoId(id, function (err, user) {
             if (err) {
                 return cb(err);
             }

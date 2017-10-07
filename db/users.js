@@ -1,5 +1,4 @@
-const debug = require('debug')('my-namespace');
-
+const debug = require('debug')('wye');
 
 var records = [
     { id: 1, email: 'jack@wye.com', username: 'Jack', password: 'secret', displayName: 'Jack'}
@@ -46,5 +45,32 @@ exports.findByEmail = function(email, cb) {
       }
     }
     return cb(null, null);
+  });
+}
+
+exports.checkLoginAndPassword = function(email, password, cb) {
+  debug('checkLoginAndPassword');
+  process.nextTick(function() {
+    debugger;
+    User.findOne({ 'email': email, 'password': password }, 'id username email', function (err, user) {
+      debug('checkLoginAndPassword.findOne');
+      debugger;
+      if (err) return handleError(err);
+      cb(null, user);
+    });
+  });
+}
+
+
+exports.findByMongoId = function(id, cb) {
+  process.nextTick(function() {
+    User.findOne({ 'id': id}, 'id username email', function (err, user) {
+      debug('checkLoginAndPassword.findByMongoId');
+      debugger;
+      if (err) return handleError(err);
+      if (!user)
+        cb(new Error('User ' + id + ' does not exist'));
+      cb(null, user);
+    });
   });
 }
