@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 var db = require('../db');
-const debug = require('debug')('my-namespace');
+const debug = require('debug')('wye');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
