@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var passport = require('passport');
 
-const debug = require('debug')('my-namespace');
-const name = 'my-app';
+const debug = require('debug')('wye');
+const name = 'wye-server';
 debug('booting %s', name);
 
 var app = express();
