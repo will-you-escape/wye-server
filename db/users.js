@@ -1,7 +1,24 @@
 var records = [
     { id: 1, email: 'jack@wye.com', username: 'Jack', password: 'secret', displayName: 'Jack'}
   , { id: 2, email: 'jill@wye.com', username: 'Jill', displayName: 'Jill'}
-];
+
+
+User = require('./schemas/user');
+
+exports.saveUser = function(email, password) {
+  // create a new user
+  var newUser = User({
+    email: email,
+    password: password,
+    admin: false
+  });
+
+  // save the user
+  newUser.save(function(err) {
+    if (err) throw err;
+    console.log('User created!');
+  });
+}
 
 exports.findById = function(id, cb) {
   process.nextTick(function() {

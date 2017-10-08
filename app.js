@@ -61,6 +61,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/wye');
+
 require('./core/auth.js')(passport);
 
 module.exports = app;

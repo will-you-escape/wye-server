@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport'); 
+var passport = require('passport');
+
+var db = require('../db/users');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,5 +32,16 @@ router.get('/logout',
     res.redirect('/');
   });
 
+router.get('/create-account',
+  function(req, res) {
+    res.render('account-creation');
+  }
+);
+
+router.post('create-account',
+  function(req, res) {
+    db.users.saveUser(req.query['email'], req.query['password']);
+  }
+);
 
 module.exports = router;
