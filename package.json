@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --inspect bin/www"
+    "server:dev": "nodemon --inspect bin/www",
+    "start": "node bin/www"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
@@ -25,6 +26,7 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "debug": "^2.6.9"
+    "debug": "^2.6.9",
+    "nodemon": "^1.12.1"
   }
 }
