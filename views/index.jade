@@ -6,7 +6,7 @@ block content
 
   if req.user
     p You are logged as #{req.user.username}.
-    a(href='/logout') Logout
+    a(href='/logout/') Logout
   else
-    a(href='/login') Login
-    a(href='/create-account') Create an account
+    a(href='/login/') Login
+    a(href='/create-account/') Create an account
