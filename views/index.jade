@@ -8,5 +8,7 @@ block content
     p You are logged as #{req.user.email}.
     a(href='/logout/') Logout
   else
-    a(href='/login/') Login
-    a(href='/create-account/') Create an account
+    div
+      a(href='/login/') Login
+    div
+      a(href='/create-account/') Create an account
