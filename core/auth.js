@@ -16,7 +16,6 @@ module.exports = function(passport) {
         },
         function (email, password, cb) {
             db.users.checkLoginAndPassword(email, password, function (err, user) {
-                debugger;
                 if (err) {
                     return cb(err);
                 }

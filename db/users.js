@@ -51,10 +51,8 @@ exports.findByEmail = function(email, cb) {
 exports.checkLoginAndPassword = function(email, password, cb) {
   debug('checkLoginAndPassword');
   process.nextTick(function() {
-    debugger;
     User.findOne({ 'email': email, 'password': password }, 'id username email', function (err, user) {
       debug('checkLoginAndPassword.findOne');
-      debugger;
       if (err) return handleError(err);
       cb(null, user);
     });
@@ -68,7 +66,6 @@ exports.findByMongoId = function(id, cb) {
   process.nextTick(function() {
     User.findOne({ '_id': ObjectId(id)}, 'id username email', function (err, user) {
       debug('checkLoginAndPassword.findByMongoId');
-      debugger;
       if (err) return handleError(err);
       if (!user)
         cb(new Error('User ' + id + ' does not exist'));
