@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  p Please login
+  p Account creation
 
-  form(action="/login/", method="post")
+  form(action="/create-account/", method="post")
     label(for='email') Email
       input(type='text' id='email' placeholder='email' name='email')
     label(for='password') Password

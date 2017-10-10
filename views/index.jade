@@ -5,7 +5,10 @@ block content
   p Welcome to #{title}
 
   if req.user
-    p You are logged as #{req.user.username}.
-    a(href='/logout') Logout
+    p You are logged as #{req.user.email}.
+    a(href='/logout/') Logout
   else
-    a(href='/login') Login
+    div
+      a(href='/login/') Login
+    div
+      a(href='/create-account/') Create an account

@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport'); 
+var passport = require('passport');
+
+var db = require('../db');
+const debug = require('debug')('wye');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,7 +18,7 @@ router.get('/login/',
   }
 );
 
-router.post('/login',
+router.post('/login/',
   passport.authenticate('local', {
     failureRedirect: '/login'}
   ),
@@ -24,11 +27,26 @@ router.post('/login',
   }
 );
 
-router.get('/logout',
+router.get('/logout/',
   function(req, res){
     req.logout();
     res.redirect('/');
   });
 
+router.get('/create-account/',
+  function(req, res) {
+    debug('creating account');
+    res.render('account-creation');
+  }
+);
+
+router.post('/create-account/',
+  function(req, res) {
+    db.users.saveUser(req.body['email'], req.body['password'], function(user) {
+      debug('user created');
+      res.redirect('/');
+    });
+  }
+);
 
 module.exports = router;

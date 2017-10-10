@@ -8,6 +8,10 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var passport = require('passport');
 
+const debug = require('debug')('wye');
+const name = 'wye-server';
+debug('booting %s', name);
+
 var app = express();
 
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
@@ -60,6 +64,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/wye');
 
 require('./core/auth.js')(passport);
 

@@ -3,23 +3,29 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "server:dev": "nodemon --inspect bin/www",
     "start": "node bin/www"
   },
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "~1.17.1",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
-    "debug": "~2.6.3",
     "dotenv": "^4.0.0",
     "express": "~4.15.2",
     "express-session": "^1.15.5",
     "jade": "~1.11.0",
     "mongodb": "^2.2.31",
+    "mongoose": "^4.12.1",
     "morgan": "~1.8.1",
-    "semantic-ui": "^2.2.13",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "semantic-ui": "^2.2.13",
     "serve-favicon": "~2.4.2"
+  },
+  "devDependencies": {
+    "debug": "^2.6.9",
+    "nodemon": "^1.12.1"
   }
 }
