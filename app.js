@@ -14,6 +14,13 @@ debug('booting %s', name);
 
 var app = express();
 
+var cors = require('cors');
+var corsOptions = {
+ origin: 'http://localhost:4000',
+};
+
+app.use(cors(corsOptions));
+
 app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
 /* Passport initialization should happen before the routing declaration
