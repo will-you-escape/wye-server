@@ -3,3 +3,4 @@ bin/*
 .env
 .DS_Store
 semantic/
+package-lock.json
