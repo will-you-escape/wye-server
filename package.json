@@ -16,7 +16,7 @@
     "debug": "^3.1.0",
     "dotenv": "^4.0.0",
     "helmet": "^3.9.0",
-    "loopback": "^3.0.0",
+    "loopback": "^3.18.3",
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^5.0.0",
     "loopback-connector-mongodb": "^3.4.1",
