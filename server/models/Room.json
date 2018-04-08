@@ -1,0 +1,58 @@
+{
+  "name": "Room",
+  "plural": "Rooms",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mongodb": {
+      "collection": "wye-rooms"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "Country": {
+      "type": "string"
+    },
+    "Region": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "Organisation": {
+      "type": "string"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "URL": {
+      "type": "string"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "Lat": {
+      "type": "string"
+    },
+    "Lng": {
+      "type": "string"
+    },
+    "GmapsName": {
+      "type": "string"
+    },
+    "GmapsId": {
+      "type": "string"
+    },
+    "GmapsPlaceId": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
