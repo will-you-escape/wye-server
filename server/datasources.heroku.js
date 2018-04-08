@@ -3,6 +3,6 @@
 module.exports = {
   db: {
     connector: 'mongodb',
-    url: process.env.DB_URI,
+    url: process.env.MONGODB_URI,
   },
 };
